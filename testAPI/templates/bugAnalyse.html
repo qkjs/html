@@ -1,0 +1,122 @@
+﻿{% extends "base/base.html" %} {% block body %}
+
+<body>
+    <script type="text/javascript" language="javascript">
+    function test() {
+        document.getElementById("form").submit();
+    }
+    </script>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% include "base/nav.html" %}
+                <div class="page-header">
+                    <h1>
+						景典游 Bug 分析 <small>请选择需要查看的内容</small>
+					</h1>
+                </div>
+                <form id="form" role="form" accept="{{ url_for('apiTest') }}" method="POST">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="btn-group">
+                                <select name="st" id="st" onchange="test()" class="btn btn-lg btn-default">
+                                    {% for optin in optins %} {% if optins[optin]['selected'] %}
+                                    <option value="{{ optin }}" selected="selected">{{ optins[optin]['text'] }}</option>
+                                    {% else %}
+                                    <option value="{{ optin }}">{{ optins[optin]['text'] }}</option>
+                                    {% endif %} {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                {% for optin in optins %} {% if optins[optin]['selected'] %} {% for e in optins[optin]['par'] %}
+                                <span class="input-group-addon">{{ optins[optin]['par'][e] }}</span>
+                                <input name="{{e}}" id="{{e}}" type="text" class="br-form-input" placeholder="请输入{{ optins[optin]['par'][e] }}"> {% endfor %} {% if optins[optin]['par'] %}
+                                <button type="submit" class="btn btn-sm btn-success">
+                                    Submit
+                                </button>
+                                {% endif %} {% endif %} {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {% if apiStatus %}
+
+                <div class="page-header table-condensed">
+                    <h1>
+					{% for optin in optins %}
+			        {% if optins[optin].selected %}
+						{{ optins[optin].text }}
+					{% endif %}
+					{% endfor %}
+
+					</h1>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr class="active">
+                            {% for title in resultTitle %}
+                            <td align="center"> <b> {{ title }}</b> </td>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="danger">
+                            {% for result in resultAct %}
+                            <td align="center"> {{ result|safe }} </td>
+                            {% endfor %}
+                        </tr>
+                        {% for result in resultResolve %}
+                        <tr class="warning">
+                            {% for e in result %}
+                            <td align="center"> {{ e|safe }} </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+
+                        {% for result in resultClose %}
+                        <tr class="success">
+                            {% for e in result %}
+                            <td align="center"> {{ e|safe }} </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td align="center" colspan={{ resultTitle|count()}}>
+                                <ul class="pagination">
+                    				<li>
+                    					<a href="#">&lt;-前一页</a>
+                    				</li>
+                    				<li>
+                    					<a href="#">1</a>
+                    				</li>
+                    				<li>
+                    					<a href="#">2</a>
+                    				</li>
+                    				<li>
+                    					<a href="#">3</a>
+                    				</li>
+                    				<li>
+                    					<a href="#">4</a>
+                    				</li>
+                    				<li>
+                    					<a href="#">5</a>
+                    				</li>
+                    				<li>
+                    					<a href="#">后一页-&gt;</a>
+                    				</li>
+                    			</ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                </table>
+                {% endif %}
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

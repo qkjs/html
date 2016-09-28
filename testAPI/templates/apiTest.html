@@ -1,0 +1,81 @@
+﻿{% extends "base/base.html" %} {% block body %}
+
+<body>
+    <script type="text/javascript" language="javascript">
+    function test() {
+        document.getElementById("form").submit();
+    }
+    </script>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% include "base/nav.html" %}
+                <div class="page-header">
+                    <h1>
+						景典API测试系统 <small>请选择需要测试的 API</small>
+					</h1>
+                </div>
+                <form id="form" role="form" accept="{{ url_for('apiTest') }}" method="POST">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="btn-group">
+                                <select name="st" id="st" onchange="test()" class="btn btn-lg btn-default">
+                                    {% for optin in optins %} {% if optins[optin]['selected'] %}
+                                    <option value="{{ optin }}" selected="selected">{{ optins[optin]['text'] }}</option>
+                                    {% else %}
+                                    <option value="{{ optin }}">{{ optins[optin]['text'] }}</option>
+                                    {% endif %} {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                {% for optin in optins %} {% if optins[optin]['selected'] %} {% for e in optins[optin]['par'] %}
+                                <span class="input-group-addon">{{ optins[optin]['par'][e] }}</span>
+                                <input name="{{e}}" id="{{e}}" type="text" class="form-control" placeholder="请输入{{ optins[optin]['par'][e] }}" required="required"> {% endfor %} {% if optins[optin]['par'] %}
+                                <span type="submit" style="cursor:default" class="input-group-addon" onclick="test()">提交</span>
+
+                                {% endif %} {% endif %} {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {% if apiStatus %}
+                <div class="page-header table-condensed">
+                    <h1>
+					{% for optin in optins %}
+			        {% if optins[optin].selected %}
+						{{ optins[optin].text }}
+
+					{% endif  %}
+					{% endfor %}
+
+					</h1>
+                </div>
+                <table class="table" >
+                    <thead>
+                        <tr class="success" align="center">
+                            {% for title in resultTitle %}
+                            <td align="center"><b> {{ title }}</b> </td>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in result %}
+                        <tr class="warning">
+                            {% for e in row %}
+                            <td align="center"> {{ e|safe }} </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

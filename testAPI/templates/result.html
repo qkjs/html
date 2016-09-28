@@ -1,0 +1,27 @@
+{% extends "base/base.html" %} {% block body %}
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% include "base/nav.html" %}
+                <div class="page-header">
+                <h1>余票信息修改成功
+                     <small>{{ pname }}</small>
+                </h1>
+                </div>
+                <a href="{{ url_for("apiTest") }}">
+                <button type="button" class="btn btn-lg btn-success">
+                    返回接口测试
+                </button>
+                </a>
+                <a href="{{ request.referrer }}">
+                <button type="button" class="btn btn-primary btn-lg">
+                    返回继续修改
+                </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

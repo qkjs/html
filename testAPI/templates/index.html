@@ -1,0 +1,83 @@
+{% extends "base/base.html" %} {% block body %}
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% include 'base/nav.html' %}
+                <div class="page-header">
+                    <h1>
+					API Testing! <small>API测试从未如此简单</small>
+				</h1>
+                </div>
+                <div class="tabbable" id="tabs-408086">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#panel-589417" data-toggle="tab">景典游</a>
+                        </li>
+                        <li>
+                            <a href="#panel-884936" data-toggle="tab">虚拟网络接口</a>
+                        </li>
+                        <li>
+                            <a href="#panel-884937" data-toggle="tab">人事考勤统计系统</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="panel-589417">
+                            <h2>
+							API测试
+						</h2>
+                            <p>
+                                本功能为测试景典游数据库与网络接口而设计。
+                            </p>
+                            <p>
+                            </p>
+                            <a href="{{ url_for('apiTest') }}">
+                                <button type="button" class="btn btn-lg btn-success">
+                                    立即前往
+                                </button>
+                                <hr>
+                            </a>
+                            <h2>
+							Bug 分析
+						</h2>
+                            <p>
+                               分析景典游的 Bug 情况！
+                            </p>
+                            <p>
+                            </p>
+                            <a href="{{ url_for('bugAnalyse') }}">
+                                <button type="button" class="btn btn-lg btn-success">
+                                    立即前往
+                                </button>
+                            </a>
+                        </div>
+                        <div class="tab-pane" id="panel-884936">
+                        <h2>
+                      		虚拟网络接口
+                      	</h2>
+                            <p>
+                                本功能专门为前端开发者设计的，主要的目的是为其提供快速的网络接口服务。不必因为等待后台开发人员而苦恼了。
+                            </p>
+                            
+                            <button type="button" class="btn btn-lg btn-success">
+                                立即前往
+                            </button>
+                        </div>
+                        <div class="tab-pane" id="panel-884937">
+                        <h2>
+                      		人事考勤系统
+                      	</h2>
+                            <a href="{{ url_for('HrChecking') }}">
+                                <button type="button" class="btn btn-lg btn-success">
+                                    立即前往
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

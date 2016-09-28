@@ -1,0 +1,104 @@
+{% extends "base/base.html" %} {% block body %}
+
+<body>
+    <script type="text/javascript" language="javascript">
+    function test(formName) {
+        alert(formName);
+        document.getElementById(formName).submit();
+    }
+    </script>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% include "base/nav.html" %}
+                <div class="page-header">
+                    <h1>
+                    节假日列表
+                </h1>
+                </div>
+                <table class="table" align="center">
+                    <tr class="warning">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td align="right">
+                            <a id="modal-414101" href="#modal-container-414101" role="button" class="btn" data-toggle="modal">
+                                <button type="button" class="btn btn-sm btn-primary">添加</button>
+                            </a>
+                            <a href="{{ request.referrer }}">
+                                <button type="button" class="btn btn-sm btn-default">返回</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% for option in titles %}
+                    <th>
+                        <div align="center">{{ option|safe }}</div>
+                    </th>
+                    {% endfor %} {% for holiday in holidays %}
+                    <tr class="success">
+                        <td align="center">{{ holiday[0] }}</label>
+                        </td>
+                        <td align="center">{{ holiday[1] }}</td>
+                        <td align="center">{{ holiday[2] }}</td>
+                        <td align="center">
+                            <a id="modal-414101" href="{{url_for('holiday', holidayID = holiday[0] )}}" role="button" class="btn" data-toggle="modal">
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="warning">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td align="right">
+                            <a id="modal-414101" href="#modal-container-414101" role="button" class="btn" data-toggle="modal">
+                                <button type="button" class="btn btn-sm btn-primary">添加</button>
+                            </a>
+                            <a href="{{ request.referrer }}">
+                                <button type="button" class="btn btn-sm btn-default">返回</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="modal fade" id="modal-container-414101" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                                <h4 class="modal-title" id="myModalLabel" align="center">添加假期</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formAdd" role="form" accept='{{url_for("holiday")}}' method="POST">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">假日名称</span>
+                                        <input name="holidayName" id="holidayName" type="text" class="form-control" placeholder="假日名称" required="required">
+                                        <span class="input-group-addon">假日时间</span>
+                                        <input name="holidayDate" id="holidayDate" type="date" class="form-control" placeholder="YYYYMMDD" required="required">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="test('formAdd')">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

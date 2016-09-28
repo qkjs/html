@@ -1,0 +1,20 @@
+{% extends "base/base.html" %} {% block body %}
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% include "base/nav.html" %}
+                <div class="page-header">
+                <h1>激活延期 Bug 成功</h1>
+                </div>
+                <a href="{{ url_for("bugAnalyse") }}">
+                <button type="button" class="btn btn-lg btn-success">
+                    返回接口测试
+                </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
