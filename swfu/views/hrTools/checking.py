@@ -1,7 +1,7 @@
-﻿from testAPI import app
+﻿from swfu import app
 from flask import Flask, request, render_template, url_for, abort, redirect, send_from_directory
 import pymysql, sys, json, chardet, datetime, os, csv, codecs, time
-from db import *
+#from db import *
 
 reload(sys)
 sys.setdefaultencoding("utf-8")

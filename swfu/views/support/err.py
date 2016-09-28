@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from testAPI import app
+from swfu import app
 
 @app.errorhandler(400)
 def page_not_found(error):
