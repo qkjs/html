@@ -1,10 +1,9 @@
-import pymysql, sys
+import sys, os
 
 from swfu import app
-
+from flask import Flask, request, render_template, url_for, abort, redirect, send_from_directory
 reload(sys)
 sys.setdefaultencoding("utf-8")
-
 
 @app.route('/i/<fileName>')
 def imageDownload(fileName = ""):

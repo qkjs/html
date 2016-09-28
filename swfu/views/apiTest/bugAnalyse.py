@@ -1,7 +1,10 @@
 ﻿#coding = "utf-8"
-from flask import Flask, request, render_template, url_for, abort, redirect, send_from_directory
+
 from swfu import app
-import pymysql, sys, json, chardet, datetime, os, csv, codecs, time
+from flask import Flask, request, render_template, url_for
+from db import *
+
+import sys, json, os, codecs, time, csv, os
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
