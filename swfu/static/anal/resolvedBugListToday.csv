@@ -1,0 +1,10 @@
+﻿No.,Bug编号,平台,状态,标题,解决者,优先级,解决方案
+1,2899,2,resolved,【我的】【我的成就】重复进入我的成就20次左右导致软件崩溃,cuikun,3,notrepro
+2,3174,2,resolved,【度假地】进入定位地图页时页面下方有数字提示,cuikun,2,fixed
+3,2698,1,resolved,【度假地】【预定支付】【统一结算】度假人数输入为0，点击支付，程序崩溃,gaomin,1,fixed
+4,2949,1,resolved,【消息】【私信】发送位置信息过程中和位置信息页面，出现英文的提示信息和按钮名，并且页面左上角的“回退”键无法分辨出来,gaomin,2,fixed
+5,2959,1,resolved,【度假地】在套餐列表中页面，不选择任何套餐，然后点击“加入购物车”出现的提示信息中“购物车”写成了“购物单“,xuwenhao,3,fixed
+6,3142,1,resolved,定位弹出页 马上开启定位功能不可用,xuwenhao,0,fixed
+7,3155,1,resolved,套餐预定填写页 文字截断。,xuwenhao,2,fixed
+8,3158,1,resolved,订单详情页，页面排版错误、,xuwenhao,2,fixed
+9,3159,1,resolved,iOS 首页消息，再删除所有消息后，无暂无消息的提示,xuwenhao,0,fixed

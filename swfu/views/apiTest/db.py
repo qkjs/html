@@ -23,7 +23,7 @@ class dbConnect():
         for row in rows:
             tmpArry = []
             for element in row:
-                print element
+                #print element
                 tmpArry.append(str(element))
             arry.append(tmpArry)
         return arry

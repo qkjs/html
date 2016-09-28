@@ -3,6 +3,8 @@ from flask import Flask, request, render_template, url_for, abort, redirect, sen
 from swfu import app
 import pymysql, sys, json, chardet, datetime, os, csv, codecs, time
 
+from db import *
+
 reload(sys)
 sys.setdefaultencoding("utf-8")
 

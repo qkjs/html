@@ -1,53 +1,8 @@
-﻿from swfu import app
+from swfu import app
 from flask import Flask, request, render_template, url_for, abort, redirect, send_from_directory
 import pymysql, sys, json, chardet, datetime, os, csv, codecs, time
-from hrDB import *
 
-reload(sys)
-sys.setdefaultencoding("utf-8")
 
-@app.route('/HrChecking')
-def HrChecking():
-    return render_template("checkingIndex.html",
-                           pageTitle = "人事考勤统计系统")
-
-@app.route('/HrChecking/holiday', methods=['POST', 'GET'])
-@app.route('/HrChecking/holiday?deleteID=<holidayID>', methods=['POST', 'GET'])
-def holiday(holidayID = ''):
-    
-    if request.method == 'POST' and holidayID == '':
-        holidayName = request.form['holidayName']
-        holidayDate = request.form['holidayDate']
-
-        HrDb().addHoliday(holidayName, holidayDate)
-    elif holidayID != '':
-        HrDb().deleteHoliday(holidayID)
-    
-    holidaysRows = HrDb().checkHoliday()
-    holidayTitle = [u'ID', u'节假日名称', u'日期', u'操作']
-
-    return render_template("holiday.html",
-                           pageTitle = "节假日修改",
-                           holidays = holidaysRows,
-                           titles = holidayTitle
-                           )    
-@app.route('/HrChecking/user')
-def userInfo():
-    userInfoRows = HrDb().checkUserInfo()
-    userInfoTitle = [u'ID', u'姓名', u'部门', u'入职日期', u'离职日期', u'加班时间', u'操作']
-    return render_template("userInfo.html",
-                        pageTitle = "用户修改",
-                        titles = userInfoTitle,
-                        users = userInfoRows
-                       )
-@app.route('/HrChecking/user/add', methods=['POST', 'GET'])
-def userAdd():
-    return "userAdd"
-    
-@app.route('/HrChecking/user/edit', methods=['POST', 'GET'])
-def userEdit():
-    return "userEdit"
-    
 class HrDb():
     def __init__(self):
         self.conn = pymysql.connect(host='dev.corp.kindin.com.cn',
