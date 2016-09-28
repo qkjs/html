@@ -68,10 +68,11 @@
                                                 <div class="jumbotron">
                                                     <h2>更新考勤</h2>
                                                     <p>
-                                                        点击下面的按钮我们可以维护公司的员工资料，包括考勤属性等内容。
+                                                        点击下面的按钮更新考勤和处理异常考勤
                                                     </p>
                                                     <p>
-                                                        <a class="btn btn-success btn-large" href="{{url_for('userInfo')}}">点击维护</a>
+                                                        <a class="btn btn-success btn-large" href="{{url_for('userInfo')}}">更新考勤</a>
+                                                        <a class="btn btn-primary btn-large" href="{{url_for('userInfo')}}">处理异常考勤</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -79,10 +80,11 @@
                                                 <div class="jumbotron">
                                                     <h2>申请休假</h2>
                                                     <p>
-                                                         遇到法定假日，可以通过点击下面的按钮来增加法定节假日。
+                                                        点击这里申请各种假期和外出等事项。
                                                     </p>
                                                     <p>
-                                                        <a class="btn btn-success btn-large" href="{{ url_for('holiday') }}">点击维护</a>
+                                                        <a class="btn btn-success btn-large" href="{{url_for('userInfo')}}">假期申请记录</a>
+                                                        <a class="btn btn-primary btn-large" href="{{url_for('userInfo')}}">快速添加考勤</a>
                                                     </p>
                                                 </div>
                                             </div>
