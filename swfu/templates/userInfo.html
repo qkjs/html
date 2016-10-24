@@ -13,8 +13,8 @@
                 {% include "base/nav.html" %}
                 <div class="page-header">
                     <h1>
-                    节假日列表
-                </h1>
+						员工列表
+                	</h1>
                 </div>
                 <table class="table" align="center">
                     <tr class="warning">
@@ -63,7 +63,7 @@
                             <a href="{{ url_for('userAdd') }}">
                                 <button type="button" class="btn btn-sm btn-primary">添加</button>
                             </a>
-                            <a href="{{ request.referrer }}">
+                            <a href="{{ url_for('HrChecking', pageId = 'cfg') }}">
                                 <button type="button" class="btn btn-sm btn-default">返回</button>
                             </a>
                         </td>

@@ -15,23 +15,44 @@
                     <div class="col-md-12">
                         <div class="tabbable" id="tabs-25637">
                             <ul class="nav nav-tabs">
+	                            {% if pageId == '' %}
                                 <li class="active">
+                                {% else %}
+                                <li>
+                                {% endif %}
                                     <a href="#panel-2" data-toggle="tab">更新考勤</a>
                                 </li>
+                                {% if pageId == 'view' %}
+                                <li class="active">
+                                {% else %}
                                 <li>
+                                {% endif %}
                                     <a href="#panel-1" data-toggle="tab">查看考勤</a>
                                 </li>
+								{% if pageId == 'cfg' %}
+                                <li class="active">
+                                {% else %}
                                 <li>
+                                {% endif %}
                                     <a href="#panel-3" data-toggle="tab">修改设置</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
+	                            {% if pageId == 'view' %}
+                                <div class="tab-pane active" id="panel-1">
+                                {% else %}
                                 <div class="tab-pane" id="panel-1">
+                                {% endif %}
                                     <p>
                                         I'm in Section 1.
                                     </p>
                                 </div>
+                                
+                                {% if pageId == 'cfg' %}
+                                <div class="tab-pane active" id="panel-3">
+                                {% else %}
                                 <div class="tab-pane" id="panel-3">
+                                {% endif %}
 	                                <br>
                                     <div class="container-fluid">
                                         <div class="row">
@@ -60,7 +81,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% if pageId == '' %}
                                 <div class="tab-pane active" id="panel-2">
+                                {% else %}
+                                <div class="tab-pane" id="panel-2">
+                                {% endif %}
                                     <br>
                                     <div class="container-fluid">
                                         <div class="row">

@@ -6,19 +6,24 @@ from hrDB import *
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
+#HR 工具主入口
 @app.route('/HrChecking')
-def HrChecking():
-    return render_template("checkingIndex.html",
-                           pageTitle = "人事考勤统计系统")
+@app.route('/HrChecking?page=<pageId>', methods=['POST', 'GET'])
+def HrChecking(pageId = ''):
+	if pageId != 'view' and pageId != 'cfg' and pageId != '':
+		pageId = ''
+	return render_template("checkingIndex.html",
+                           pageTitle = "人事考勤统计系统",
+                           pageId = pageId
+                           )
 
+#节假日管理入口
 @app.route('/HrChecking/holiday', methods=['POST', 'GET'])
 @app.route('/HrChecking/holiday?deleteID=<holidayID>', methods=['POST', 'GET'])
 def holiday(holidayID = ''):
-    
     if request.method == 'POST' and holidayID == '':
         holidayName = request.form['holidayName']
         holidayDate = request.form['holidayDate']
-
         HrDb().addHoliday(holidayName, holidayDate)
     elif holidayID != '':
         HrDb().deleteHoliday(holidayID)
@@ -31,6 +36,8 @@ def holiday(holidayID = ''):
                            holidays = holidaysRows,
                            titles = holidayTitle
                            )    
+                           
+#用户管理入口
 @app.route('/HrChecking/user')
 def userInfo():
     userInfoRows = HrDb().checkUserInfo()
@@ -40,65 +47,14 @@ def userInfo():
                         titles = userInfoTitle,
                         users = userInfoRows
                        )
+                    
+#添加用户
 @app.route('/HrChecking/user/add', methods=['POST', 'GET'])
 def userAdd():
     return "userAdd"
-    
+
+#删除用户
 @app.route('/HrChecking/user/edit', methods=['POST', 'GET'])
 def userEdit():
     return "userEdit"
-    
-class HrDb():
-    def __init__(self):
-        self.conn = pymysql.connect(host='dev.corp.kindin.com.cn',
-                                    port=3306,
-                                    user='root',
-                                    passwd='123456',
-                                    db='zbox',
-                                    charset='utf8')
-        self.cur = self.conn.cursor()
-
-    def run(self, sqlCmd):
-        result = self.cur.execute(sqlCmd)
-        self.conn.commit()
-        return result
-
-    def addHoliday(self, holidayName, holidayDate):
-        sqlCmd = 'INSERT into hr_holiday (name, date) VALUES("%s","%s");'%(holidayName, holidayDate)
-        self.run(sqlCmd)
-
-    def deleteHoliday(self, holidayID):
-        sqlCmd = "delete from hr_holiday where id = %s"%holidayID
-        #print sqlCmd
-        self.run(sqlCmd)
-            
-    
-    def checkHoliday(self):
-        sqlCmd = "select * from hr_holiday order by ID desc"
-        self.cur.execute(sqlCmd)
-        sourceDatas = self.cur.fetchall()
-
-        arry = []
-        for row in sourceDatas:
-            tmpArry = []
-            for element in row:
-                tmpArry.append(str(element))
-            arry.append(tmpArry)
-        return arry
-
-    def checkUserInfo(self):
-        sqlCmd = "select id, name, department, hireDate, leaveDate, overTime from hr_userInfo where leaveDate is Null order by ID asc"
-        self.cur.execute(sqlCmd)
-        sourceDatas = self.cur.fetchall()
-
-        arry = []
-        for row in sourceDatas:
-            tmpArry = []
-            for element in row:
-                tmpArry.append(str(element))
-            arry.append(tmpArry)
-        return arry
-    
-    def __exit__(self):
-        self.cur.close()
-        self.conn.close()
+  
