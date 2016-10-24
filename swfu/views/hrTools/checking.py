@@ -29,7 +29,7 @@ def holiday(holidayID = ''):
         HrDb().deleteHoliday(holidayID)
     
     holidaysRows = HrDb().checkHoliday()
-    holidayTitle = [u'ID', u'节假日名称', u'日期', u'操作']
+    holidayTitle = [u'ID', u'节假日名称', u'日期', u'类型', u'操作']
 
     return render_template("holiday.html",
                            pageTitle = "节假日修改",

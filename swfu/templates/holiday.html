@@ -21,6 +21,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td align="right">
                             <a id="modal-414101" href="#modal-container-414101" role="button" class="btn" data-toggle="modal">
                                 <button type="button" class="btn btn-sm btn-primary">添加</button>
@@ -40,6 +41,7 @@
                         </td>
                         <td align="center">{{ holiday[1] }}</td>
                         <td align="center">{{ holiday[2] }}</td>
+                        <td align="center">{{ holiday[3] }}</td>
                         <td align="center">
                             <a id="modal-414101" href="{{url_for('holiday', holidayID = holiday[0] )}}" role="button" class="btn" data-toggle="modal">
                                 <button type="button" class="btn btn-danger">删除</button>
@@ -51,11 +53,12 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td align="right">
                             <a id="modal-414101" href="#modal-container-414101" role="button" class="btn" data-toggle="modal">
                                 <button type="button" class="btn btn-sm btn-primary">添加</button>
                             </a>
-                            <a href="{{ request.referrer }}">
+                            <a href="{{ url_for('HrChecking', pageId = 'cfg') }}">
                                 <button type="button" class="btn btn-sm btn-default">返回</button>
                             </a>
                         </td>
@@ -65,8 +68,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
